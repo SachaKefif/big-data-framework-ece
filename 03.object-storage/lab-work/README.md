@@ -40,6 +40,10 @@ SET TimeZone = 'UTC';
 
 Run `duckdb analytics.duckdb -init init.sql`, then `.read sql/analytics.sql`.
 The CLI and Python package use the Onyxia DuckDB S3 secret.
+For the large CSV versus Parquet section, generate and upload
+`orders_large.csv` as `large/orders.csv`, set `large_root` to the S3 `large/`
+prefix in `init.sql`, and run `.read sql/large_benchmark.sql`. Run each
+`EXPLAIN ANALYZE` in a fresh CLI process for uncached transfer measurements.
 
 The Python report queries the bronze orders CSV directly:
 
