@@ -8,3 +8,10 @@ delete.json
 lifecycle.json
 policy.json
 large_dataset.bin
+*.duckdb
+*.duckdb.wal
+init.sql
+target/
+dbt_packages/
+logs/
+analytics/

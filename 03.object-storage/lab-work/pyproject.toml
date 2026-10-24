@@ -5,12 +5,14 @@ description = "Dataset generators for the Object Storage labs"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "duckdb>=2.0.0",
     "faker>=40.37.0",
 ]
 
 [project.scripts]
 dataset-users = "object_storage_labs.dataset_users:main"
 dataset-orders = "object_storage_labs.dataset_orders:main"
+orders-report = "object_storage_labs.orders_report:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
