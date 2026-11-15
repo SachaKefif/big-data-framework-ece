@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: batch-export
+spec:
+  completions: 4
+  parallelism: 4
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: export
+          image: python:3.13-slim
+          command: [python, -c]
+          args: ["import os; print('exported shard from', os.environ['HOSTNAME'])"]
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bronze-to-silver
+spec:
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: transform
+              image: python:3.13-slim
+              command: [python, -c]
+              args: ["from datetime import datetime, timezone; print('ETL check at', datetime.now(timezone.utc).isoformat())"]

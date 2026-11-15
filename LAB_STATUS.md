@@ -2,6 +2,34 @@
 
 Official instructions: [uv](https://github.com/adaltas/ece-bigdata-2026-fall/blob/main/03.object-storage/lab-1-uv.md), [S3](https://github.com/adaltas/ece-bigdata-2026-fall/blob/main/03.object-storage/lab-2-s3.md), [DuckDB](https://github.com/adaltas/ece-bigdata-2026-fall/blob/main/04.sql-analytics/lab-duckdb.md), [dbt](https://github.com/adaltas/ece-bigdata-2026-fall/blob/main/05.etl-elt-and-medallion-architecture/lab-dbt.md), [RDD](https://github.com/adaltas/ece-bigdata-2026-fall/blob/main/06.spark-introduction/lab-pyspark-rdd.md), and [DataFrame/Iceberg](https://github.com/adaltas/ece-bigdata-2026-fall/blob/main/07.sparksql-and-dataframes/lab-pyspark-silver.md). The Kubernetes ConfigMap/Secret and Job prerequisites were also reviewed.
 
+## Update: 2026-11-14, modules 1–9
+
+- Module 1: Added an isolated Linux command exercise. Executed successfully in
+  WSL. The interactive `tail -f` and Pod log exercises remain for the course
+  terminal.
+- Module 2: Added completed Deployment and Service manifests, a ConfigMap and
+  Secret-consuming Job, plus parallel Job and CronJob manifests. YAML parsed
+  successfully. No minikube or `kubectl` binary is installed in this local
+  session, so live rollout, networking, scaling, and Job execution are pending.
+- Modules 3–7: The prior implementations and local verification below remain.
+  The required course S3 and Onyxia checks are pending.
+- Module 8: Added a Spark Iceberg script that inspects snapshots, files, and
+  manifests, compares plain Parquet, and optionally appends rows, queries a
+  previous snapshot, and evolves both users and orders schemas. Verified in
+  WSL with Spark 4.0.1 and Iceberg 1.11.0: orders grew from 2,414 to 2,418,
+  users from 50 to 54, and time travel returned the original counts. S3
+  execution and metadata capture are pending.
+- Module 9: Added a pinned Helm chart, deployment/bootstrap helpers, and
+  separate Spark workflows for the `dev` and `analyst` principals. Python and
+  shell syntax passed; `helm dependency update`, `helm lint`, and `helm template`
+  passed and rendered 12 Kubernetes resources. Polaris deployment, catalog
+  access, role denial, and metadata commit require the Onyxia cluster and
+  credentials.
+- Existing generator tests: 2 passed on 2026-11-14. No S3, Kubernetes, or
+  Polaris success is claimed from local tests.
+- On 2026-11-15, the Onyxia login page displayed "Authentication is currently
+  unavailable. Please try again later." Live checks remain pending.
+
 ## Environment and submission
 
 - This is a local Windows checkout, not Onyxia. The original student repository and its `main` branch were reused; no existing source files were replaced wholesale and Git history was not rewritten.

@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pipeline-config-check
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: check
+          image: python:3.13-slim
+          command: [python, -c]
+          args:
+            - |
+              import os
+              assert int(os.environ['BATCH_SIZE']) > 0
+              print('config loaded', os.environ['SOURCE_PATH'], os.environ['TARGET_PATH'])
+              print('secret mounted:', os.path.exists('/run/secrets/s3/access_key'))
+          envFrom:
+            - configMapRef:
+                name: pipeline-config
+          volumeMounts:
+            - name: s3-credentials
+              mountPath: /run/secrets/s3
+              readOnly: true
+      volumes:
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials

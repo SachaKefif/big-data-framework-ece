@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pipeline-config
+data:
+  BATCH_SIZE: "1000"
+  SOURCE_PATH: /data/bronze
+  TARGET_PATH: /data/silver

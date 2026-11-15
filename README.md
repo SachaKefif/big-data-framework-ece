@@ -1,22 +1,24 @@
-# ECE Big Data labs
+# ECE Big Data labs: modules 1–9
 
-Open the lab files from this repository root:
+This repository contains student implementations for the
+[ECE 2026 fall Big Data course](https://github.com/adaltas/ece-bigdata-2026-fall).
+The course requires Onyxia Kubernetes, Ceph S3, and Polaris for live verification
+of several labs. Local implementations and their limits are recorded in
+[LAB_STATUS.md](LAB_STATUS.md).
 
-| Lab | Location |
+| Module | Implementation |
 | --- | --- |
-| 1. uv project | [`03.object-storage/lab-work/`](03.object-storage/lab-work/) |
-| 2. S3 and Kubernetes | [`s3-commands.md`](03.object-storage/lab-work/s3-commands.md) and [`k8s/`](03.object-storage/lab-work/k8s/) |
-| 3. DuckDB | [`sql/`](03.object-storage/lab-work/sql/) and [`orders_report.py`](03.object-storage/lab-work/src/object_storage_labs/orders_report.py) |
-| 4. dbt | [`lab_medallion/`](03.object-storage/lab-work/lab_medallion/) — models are under [`models/silver/`](03.object-storage/lab-work/lab_medallion/models/silver/) |
-| 5. Spark RDD | [`06.spark-introduction/lab_rdd.py`](06.spark-introduction/lab_rdd.py) |
-| 6. Spark DataFrame and Iceberg | [`07.sparksql-and-dataframes/lab_silver.py`](07.sparksql-and-dataframes/lab_silver.py) |
+| 1. Linux foundations | [`01.introduction-to-big-data/`](01.introduction-to-big-data/) |
+| 2. Kubernetes | [`02.containerization-and-kubernetes/`](02.containerization-and-kubernetes/) |
+| 3. Object storage and S3 | [`03.object-storage/lab-work/`](03.object-storage/lab-work/) |
+| 4. DuckDB SQL analytics | [`03.object-storage/lab-work/sql/`](03.object-storage/lab-work/sql/) and [`orders_report.py`](03.object-storage/lab-work/src/object_storage_labs/orders_report.py) |
+| 5. dbt medallion | [`03.object-storage/lab-work/lab_medallion/`](03.object-storage/lab-work/lab_medallion/) |
+| 6. Spark RDD | [`06.spark-introduction/`](06.spark-introduction/) |
+| 7. Spark DataFrame and SQL | [`07.sparksql-and-dataframes/`](07.sparksql-and-dataframes/) |
+| 8. Iceberg | [`08.iceberg-introduction/`](08.iceberg-introduction/) |
+| 9. Polaris | [`09.polaris/`](09.polaris/) |
 
-The lab numbers above follow the task list. The course directory names use their
-module numbers, so lab 4 (dbt) is not a top-level `04` directory. The dbt
-project lives inside `03.object-storage/lab-work` so `uv run` finds the parent
-`pyproject.toml` and environment. VS Code's Compact Folders setting may display
-`03.object-storage\lab-work` as one folder in Explorer; expand it to see
-`lab_medallion`.
-
-See [`LAB_STATUS.md`](LAB_STATUS.md) for verification results and the Onyxia
-steps that still require access to the course environment.
+The object storage project houses the module 4 and 5 code so `uv run` uses one
+environment and dependency lock. The Spark scripts use PySpark from the Onyxia
+image or a compatible local installation. The Polaris deployment helper is
+intended for the Onyxia cluster.
